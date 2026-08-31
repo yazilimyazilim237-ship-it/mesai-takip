@@ -3,9 +3,8 @@ package com.example.mesaitakip.data;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.Android.lifecycle.AndroidViewModel;
+import androidx.lifecycle.AndroidViewModel;
 
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
