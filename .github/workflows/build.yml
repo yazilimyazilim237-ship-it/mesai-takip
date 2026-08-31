@@ -20,11 +20,19 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
+    - name: Build with Android CLI
+      run: |
+        export ANDROID_SDK_ROOT=$HOME/android-sdk
+        mkdir -p $ANDROID_SDK_ROOT
+        echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+        # Gradle wrapper yerine sistem gradlet ile derleme veya doğrudan build
+        curl -s "https://services.gradle.org/distributions/gradle-8.5-bin.zip" -o gradle.zip
+        unzip -q gradle.zip
+        sudo mv gradle-8.5 /opt/gradle
+        export PATH=$PATH:/opt/gradle/bin
+        gradle wrapper
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
