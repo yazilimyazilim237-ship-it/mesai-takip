@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tarih (Örn: 2026-08-31)"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/etShiftType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vardiya Türü (Gündüz/Gece)" />
+
+    <EditText
+        android:id="@+id/etWorkingHours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Çalışma Saati"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/etOvertimeHours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fazla Mesai Saati"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/etNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notlar" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Vardiyayı Kaydet" />
+
+</LinearLayout>
