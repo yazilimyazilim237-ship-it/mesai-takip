@@ -20,7 +20,8 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Download Gradle and Build APK
+    - name: Build Android APK in Subfolder
+      working-directory: uygulama
       run: |
         wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
         unzip -q gradle-8.5-bin.zip
@@ -31,6 +32,4 @@ jobs:
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
-      with:
-        name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+…
