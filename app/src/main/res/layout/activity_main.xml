@@ -46,3 +46,10 @@
         android:text="Vardiyayı Kaydet" />
 
 </LinearLayout>
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerViewShifts"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:layout_marginTop="16dp"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
