@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,14 +10,15 @@
         android:id="@+id/etDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tarih (Örn: 2026-08-31)"
+        android:hint="Tarih (Örn: 01.09.2026)"
         android:inputType="date" />
 
     <EditText
         android:id="@+id/etShiftType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Vardiya Türü (Gündüz/Gece)" />
+        android:hint="Vardiya Türü (Gündüz/Gece)"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/etWorkingHours"
@@ -36,7 +38,8 @@
         android:id="@+id/etNotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Notlar" />
+        android:hint="Notlar"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/btnSave"
@@ -45,7 +48,54 @@
         android:layout_marginTop="16dp"
         android:text="Vardiyayı Kaydet" />
 
+    <Button
+        android:id="@+id/btnExportPdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:text="PDF Raporu İndir / Paylaş"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>
+
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginTop="12dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tvTotalWorking"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Toplam Çalışma: 0s"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTotalOvertime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Toplam Fazla Mesai: 0s"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerViewShifts"
     android:layout_width="match_parent"
