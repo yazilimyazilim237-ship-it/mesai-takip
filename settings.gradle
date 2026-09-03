@@ -1,1 +1,3 @@
-include ':uygulama/ kaynak / ana'
+rootProject.name = "MesaiTakip"
+include ':uygulama'
+project(':uygulama').projectDir = file('uygulama/ kaynak / ana')
