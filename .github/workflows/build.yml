@@ -16,7 +16,8 @@ jobs:
         java-version: '17'
     - name: Build APK
       run: |
-        cd "uygulama/ kaynak / ana"
+        # Türkçe karakter ve boşluk sorununu aşmak için yıldız (*) joker kullanıyoruz
+        cd uyg*
         gradle wrapper --gradle-version 8.5
         chmod +x gradlew
         ./gradlew assembleDebug
