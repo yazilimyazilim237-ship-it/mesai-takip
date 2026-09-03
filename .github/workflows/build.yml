@@ -21,8 +21,7 @@ jobs:
           java-version: '17'
 
       - name: APK Oluştur
-        working-directory: "uygulama/ kaynak / ana"
-        run: ./gradlew assembleDebug
+        run: cd "uygulama/ kaynak / ana" && chmod +x gradlew && ./gradlew assembleDebug
 
       - name: APK Yükle
         uses: actions/upload-artifact@v4
