@@ -1,77 +1,31 @@
-name: Build Android APK
+name: APK Oluştur
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Projeyi indir
+      - name: Projeyi İndir
         uses: actions/checkout@v4
 
-      - name: ☕ JDK 17 kur
+      - name: JDK 17 Kur
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
+          distribution: 'temurin'
           java-version: '17'
 
-      - name: 🔎 Android proje klasörünü bul
-        shell: bash
-        run: |
-          echo "📂 Proje yapısı:"
-          find . -maxdepth 4 -type f \
-            \( -name "settings.gradle" -o -name "settings.gradle.kts" -o -name "build.gradle" -o -name "build.gradle.kts" \) \
-            -print
+      - name: APK Oluştur
+        working-directory: uygulama/ kaynak / ana
+        run: ./gradlew assembleDebug
 
-          SETTINGS=$(find . -type f \
-            \( -name "settings.gradle" -o -name "settings.gradle.kts" \) \
-            | head -n 1)
-
-          if [ -n "$SETTINGS" ]; then
-            PROJECT_DIR=$(dirname "$SETTINGS")
-          else
-            BUILD=$(find . -type f \
-              \( -name "build.gradle" -o -name "build.gradle.kts" \) \
-              | head -n 1)
-
-            if [ -z "$BUILD" ]; then
-              echo "❌ Android Gradle projesi bulunamadı!"
-              exit 1
-            fi
-
-            PROJECT_DIR=$(dirname "$BUILD")
-          fi
-
-          echo "✅ Proje klasörü: $PROJECT_DIR"
-          echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
-
-      - name: 📦 Gradle 8.5 indir
-        shell: bash
-        run: |
-          wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
-          unzip -q gradle-8.5-bin.zip -d "$HOME"
-          echo "$HOME/gradle-8.5/bin" >> "$GITHUB_PATH"
-
-      - name: 🔨 APK oluştur
-        shell: bash
-        run: |
-          cd "$PROJECT_DIR"
-
-          echo "🚀 Gradle sürümü:"
-          gradle --version
-
-          echo "🏗️ Debug APK oluşturuluyor..."
-          gradle assembleDebug --stacktrace --no-daemon
-
-      - name: 📦 APK'yı yükle
+      - name: APK Yükle
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: |
-            */build/outputs/apk/debug/.apk
-          if-no-files-found: error
+          path: uygulama/ kaynak / ana/app/build/outputs/apk/debug/app-debug.apk
