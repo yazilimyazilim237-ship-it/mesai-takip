@@ -16,7 +16,7 @@ jobs:
         java-version: '17'
     - name: Build APK
       run: |
-        cd uygulama
+        cd "uygulama/ kaynak / ana"
         gradle wrapper --gradle-version 8.5
         chmod +x gradlew
         ./gradlew assembleDebug
@@ -24,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
-        path: uygulama/app/build/outputs/apk/debug/app-debug.apk
+        path: "**/build/outputs/apk/debug/app-debug.apk"
