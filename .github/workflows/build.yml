@@ -22,8 +22,13 @@ jobs:
 
       - name: APK Oluştur
         run: |
-          PROJECT_DIR=$(find . -type d -name "ana" | head -n 1)
-          echo "Bulunan dizin: $PROJECT_DIR"
+          GRADLEW_PATH=$(find . -name "gradlew" | head -n 1)
+          if [ -z "$GRADLEW_PATH" ]; then
+            echo "HATA: gradlew dosyası bulunamadı!"
+            exit 1
+          fi
+          PROJECT_DIR=$(dirname "$GRADLEW_PATH")
+          echo "Bulunan proje dizini: $PROJECT_DIR"
           cd "$PROJECT_DIR"
           chmod +x gradlew
           ./gradlew assembleDebug
