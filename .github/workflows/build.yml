@@ -14,13 +14,9 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
-    - name: Find and Build APK
+    - name: Build APK
       run: |
-        # Proje klasörünü otomatik bulur ve içine girer
-        PROJECT_DIR=$(find . -name "build.gradle" -o -name "build.gradle.kts" | head -n 1 | xargs dirname)
-        echo "Bulunan proje dizini: $PROJECT_DIR"
-        cd "$PROJECT_DIR"
-        
+        cd "uygulama/ kaynak / ana"
         gradle wrapper --gradle-version 8.5
         chmod +x gradlew
         ./gradlew assembleDebug
@@ -28,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
-        path: "*/build/outputs/apk/debug/.apk"
+        path: "**/build/outputs/apk/debug/app-debug.apk"
